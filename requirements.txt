@@ -1,2 +1,4 @@
+requests==2.18.1
 setuptools==36.6.0
 Flask==0.12.2
+flask_bootstrap==3.3.7.1
