@@ -1,6 +1,7 @@
-/config_scripts/
+/config_scripts/*
 *.pdf
 
+/.idea/
 
 # Created by https://www.gitignore.io/api/virtualenv
 
