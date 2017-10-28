@@ -8,8 +8,14 @@ from playmusic.db import Database as db
 app = Flask(__name__)
 app.config.from_object('config')
 
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html'), 40
+
 # EMILIO: Esto no entendí para que sirve, mejor quizás no complicarse
 # con tanto y hacer una api sencilla no más
+
 
 # GABRIEL: La idea de esto es para que aprendan a hacer una aplicacion modular
 # con flask de tal manera que separen las rutas de manera mas eficiente
