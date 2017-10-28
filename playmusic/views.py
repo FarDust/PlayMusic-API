@@ -1,7 +1,7 @@
 from playmusic import app
 from flask import render_template, request
 from pymongo import *
-import flask_bootstrap
+# import flask_bootstrap
 
 
 @app.route('/')

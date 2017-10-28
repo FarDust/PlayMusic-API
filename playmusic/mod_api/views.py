@@ -1,6 +1,6 @@
 from playmusic import db
 from flask import Blueprint, request, render_template, flash, redirect, url_for, jsonify
-import flask_bootstrap
+# import flask_bootstrap
 import json
 
 mod_api = Blueprint('auth', __name__, url_prefix='/api')
