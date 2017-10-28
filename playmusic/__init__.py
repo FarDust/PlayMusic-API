@@ -86,7 +86,11 @@ def artistas_id(id_1, id_2):
 def mensajes_filtrados():
     """
     Cuarta ruta con tres opciones, solamente acepta POST. Recibe un 
-    json con la opcion y los datos a filtrar
+    json con la opcion y los datos a filtrar.
+
+    Para esta ruta se asume que la base de datos está indexada, si no lo está 
+    hay que ejecutar: desde mongodb 
+    db.mensajes.createIndex( { message: 'text' } )
     """
     try: 
         # Se recibe lo que se envía al POST y se fuerza a ser JSON
