@@ -57,13 +57,15 @@ def artista_id(id):
         return respuesta
 
 
-@app.route('/artista/<id_1>/<id_2>')
-def artistas_id(id_1, id_2):
+@app.route('/artista')
+def artistas_id():
     """
     Tercera ruta del enunciado. Recibe los dos ids de los artistas y
     retorna una lista con todas los mensajes que han intercambiado
     ambos artistas,
     """
+    id_1 = request.args.get("id1")
+    id_2 = request.args.get("id2")
     try:
         database = db()
         ret = database.mensajes_compartidos(int(id_1), int(id_2))
