@@ -82,6 +82,57 @@ def artistas_id(id_1, id_2):
         return respuesta
 
 
+@app.route('/mensajes', methods=['POST'])
+def mensajes_filtrados():
+    """
+    Cuarta ruta con tres opciones, solamente acepta POST. Recibe un 
+    json con la opcion y los datos a filtrar
+    """
+    try: 
+        # Se recibe lo que se envía al POST y se fuerza a ser JSON
+        form = json.loads(request.get_json(force=True))
+        database = db()
+
+        print('[DEBUG] Form recibido', form)
+
+        if form['opcion']:
+            # Agregar una o más frases si o si deben estar en el mensaje
+            if form['opcion'] == 1:
+                if len(form['data']) > 0:
+                    # Concatenar frases en una sola frase gigante
+                    ret = database.mensajes_filtrados_frases(form['data'])
+                else:
+                    ret = {'error': 'La lista de frases está vacía'}
+
+            # Agregar palabras que deseablemente deben estar pero no necesarias
+            elif form['opcion'] == 2:
+                if len(form['data']) > 0:
+                    # Concatenar palabras en una sola frase
+                    palabras = ''
+                    for x in form['data']:
+                        frases += ' {}'.format(x)
+
+
+            # Agregar palabras que no pueden estar en el mensaje
+            elif form['opcion'] == 3:
+                pass
+
+            status = 200
+        
+        else: 
+            print('[ERROR] Ocurrió un error no se encontró la opción')
+            ret = {'error': 'No se encontró opcion'}
+
+    except Exception as e:
+        print('[ERROR] Ocurrió un error al buscar mensajes filtrados', e)
+        status = 500
+        ret = {'error': 'Ocurrió un error.'}
+
+    finally:
+        respuesta = Response(json.dumps(ret), status=status, mimetype='application/json')
+        return respuesta
+
+
 
 # Esto no entendí para que sirve, mejor quizás no complicarse
 # con tanto y hacer una api sencilla no más
