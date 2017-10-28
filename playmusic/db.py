@@ -90,13 +90,18 @@ class Database:
 
     def mensajes_filtrados(self, obligatorios, quizas, no_pueden):
         """
-        
-
-
+        Metodo para filtrar mensajes. Recibe una lista con frases obligatorias,
+        una lista con palabras que quizás podrían estar y una lista con palabras
+        que no pueden estar en los mensajes. 
+        Después se escribe una consulta como un string y después se ejecuta
+        con eval() y se retorna la lista de mensajes.
         """ 
         try:
             # Base de la query se se ejecutara
             query_aux = "self.db.mensajes.find({\"$text\": {\"$search\": \""
+            # Concatenar palabras que quizás pueden ir
+            for x in quizas:
+                query_aux += "{} ".format(x)
             # Concatenar frases obligatorias que deben estar en el mensaje
             for x in obligatorios:
                 query_aux += "\\\"{}\\\" ".format(x)
@@ -109,8 +114,6 @@ class Database:
             mensajes =  eval(query_aux)
             mensajes = json.loads(json_util.dumps(mensajes))
             
-
-
             print('[DEBUG DB] Mensajes encontrados: ', mensajes)
             respuesta = { 'mensajes': mensajes }
 
@@ -120,8 +123,3 @@ class Database:
 
         finally:
             return respuesta
-
-
-
-
-"\"$or\: [{ ""

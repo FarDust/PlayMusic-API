@@ -3,9 +3,9 @@ import json
 
 
 jeison = {
-    'obligatorias': ['Tenemos que hablar'], 
-    'quizas': [],
-    'no_pueden': ['el']
+    'obligatorias': ['Tenemos hablar'], 
+    'quizas': ['completo'],
+    'no_pueden': []
 }
 
 jeison = json.dumps(jeison)
