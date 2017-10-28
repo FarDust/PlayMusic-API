@@ -1,5 +1,13 @@
 import requests
 import json
 
-jeison = json.dumps({ 'opcion': 1, 'data': ['Tenemos que hablar'] })
+
+jeison = {
+    'obligatorias': ['Tenemos que hablar'], 
+    'quizas': [],
+    'no_pueden': ['el']
+}
+
+jeison = json.dumps(jeison)
 print(requests.post('http://localhost:5000/mensajes', json=jeison).text)
+

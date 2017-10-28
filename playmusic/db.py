@@ -88,23 +88,29 @@ class Database:
             return respuesta
 
 
-    def mensajes_filtrados_frases(self, frases):
+    def mensajes_filtrados(self, obligatorios, quizas, no_pueden):
         """
-        Metodo para buscar mensajes filtrados por frases que si o si deben estar 
-        en el mensaje. Recibe una lista con frases y busca en la base de datos
-        mensajes que contienen las frases
+        
+
+
         """ 
         try:
             # Base de la query se se ejecutara
             query_aux = "self.db.mensajes.find({\"$text\": {\"$search\": \""
-            # Concatenar frases y agregarles los \ 
-            for x in frases:
+            # Concatenar frases obligatorias que deben estar en el mensaje
+            for x in obligatorios:
                 query_aux += "\\\"{}\\\" ".format(x)
+            # Concatenar palabras que no pueden estar en el mensaje
+            for x in no_pueden:
+                query_aux += "-{} ".format(x)
             query_aux = query_aux.strip(" ")
             query_aux += "\"}})"
             # Ejecutar la query            
             mensajes =  eval(query_aux)
             mensajes = json.loads(json_util.dumps(mensajes))
+            
+
+
             print('[DEBUG DB] Mensajes encontrados: ', mensajes)
             respuesta = { 'mensajes': mensajes }
 
@@ -116,3 +122,6 @@ class Database:
             return respuesta
 
 
+
+
+"\"$or\: [{ ""

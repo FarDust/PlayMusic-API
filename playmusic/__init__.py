@@ -99,33 +99,12 @@ def mensajes_filtrados():
 
         print('[DEBUG] Form recibido', form)
 
-        if form['opcion']:
-            # Agregar una o más frases si o si deben estar en el mensaje
-            if form['opcion'] == 1:
-                if len(form['data']) > 0:
-                    # Concatenar frases en una sola frase gigante
-                    ret = database.mensajes_filtrados_frases(form['data'])
-                else:
-                    ret = {'error': 'La lista de frases está vacía'}
 
-            # Agregar palabras que deseablemente deben estar pero no necesarias
-            elif form['opcion'] == 2:
-                if len(form['data']) > 0:
-                    # Concatenar palabras en una sola frase
-                    palabras = ''
-                    for x in form['data']:
-                        frases += ' {}'.format(x)
-
-
-            # Agregar palabras que no pueden estar en el mensaje
-            elif form['opcion'] == 3:
-                pass
-
-            status = 200
-        
-        else: 
-            print('[ERROR] Ocurrió un error no se encontró la opción')
-            ret = {'error': 'No se encontró opcion'}
+        ret = database.mensajes_filtrados(
+                                                                form['obligatorias'], 
+                                                                form['quizas'],
+                                                                form['no_pueden'])
+        status = 200
 
     except Exception as e:
         print('[ERROR] Ocurrió un error al buscar mensajes filtrados', e)
