@@ -32,7 +32,11 @@ class Database:
         datos.
         """
         try:
+<<<<<<< HEAD
             resultado = self.db.messages.find({"_id": id})
+=======
+            resultado = self.db.messages.find({"_id": ObjectId(id)})
+>>>>>>> 2a1325160378edd4b3ae2f186c0149a6de942a54
             resultado = json.loads(json_util.dumps(resultado))
             respuesta = {'entities': resultado}
 
