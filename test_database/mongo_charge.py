@@ -34,7 +34,7 @@ if len(sys.argv) == 2:
                 obj["_id"] = obj["id"]
                 obj.pop("id", 0)
             db[collection].insert_one(obj)
-            print("item id: {} ready!!!".format(obj["id"]))
+            print("item id: {} ready!!!".format(obj["_id"]))
     else:
         raise FileNotFoundError
 else:

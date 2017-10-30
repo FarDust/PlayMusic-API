@@ -11,7 +11,7 @@ app.config.from_object('config')
 @app.errorhandler(404)
 def not_found(error):
     respuesta = Response(json.dumps(
-        {"error": 404, "description": "route not found"}), status=status, mimetype='application/json')
+        {"error": 404, "description": "route not found"}), status=404, mimetype='application/json')
     return respuesta
 
 # EMILIO: Esto no entendí para que sirve, mejor quizás no complicarse

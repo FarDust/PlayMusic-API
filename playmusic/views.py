@@ -15,23 +15,20 @@ def inicio():
     return render_template("index.html")
 
 
-@app.route('/mensajes/<id>')
-def mensajes_id(id):
+@app.route('/mensajes', methods=['GET'])
+def mensajes_id():
     """
     Primera ruta del enunciado. Recibe el id de un mensaje
     y retorna toda la informacion de este mensaje.
     """
-    try:
-        database = DB()
-        id = int(id)
-        ret = database.buscar_mensaje_id(id)
+    id = request.args.get("id")
+    database = DB()
+    id = int(id)
+    ret = database.buscar_mensaje_id(id)
+    if len(ret["entities"]) == 0:
+        return
+    else:
         status = 200
-
-    except Exception as e:
-        status = 500
-        ret = {'error': 'Ocurrio un error.'}
-
-    finally:
         respuesta = Response(json.dumps(ret), status=status,
                              mimetype='application/json')
         return respuesta
