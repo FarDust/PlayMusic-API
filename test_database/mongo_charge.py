@@ -29,7 +29,10 @@ if len(sys.argv) == 2:
         collection = sys.argv[1].split(".")[0]
         for obj in data:
             if not "id" in obj.keys():
-                obj["id"] = next(ids)
+                obj["_id"] = next(ids)
+            if "id" in obj:
+                obj["_id"] = obj["id"]
+                obj.pop("id", 0)
             db[collection].insert_one(obj)
             print("item id: {} ready!!!".format(obj["id"]))
     else:

@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 import json
-from bson import json_util
+from bson import json_util, ObjectId
 
 # Configuracion para conectarse
 DATABASE = 'test2'
@@ -32,7 +32,7 @@ class Database:
         datos.
         """
         try:
-            resultado = self.db.messages.find({"id": id})
+            resultado = self.db.messages.find({"_id": id})
             resultado = json.loads(json_util.dumps(resultado))
             respuesta = {'entities': resultado}
 
