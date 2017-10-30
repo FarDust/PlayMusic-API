@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 import json
-from bson import json_util, ObjectId
+from bson import json_util
 
 # Configuracion para conectarse
 DATABASE = 'test2'
