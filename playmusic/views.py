@@ -1,6 +1,8 @@
 from playmusic import app
-from flask import render_template, request
+from flask import render_template, request, Response, send_from_directory, request
 from pymongo import *
+from playmusic.db import Database as DB
+import json
 # import flask_bootstrap
 
 
@@ -16,11 +18,11 @@ def inicio():
 @app.route('/mensajes/<id>')
 def mensajes_id(id):
     """
-    Primera rota del enunciado. Recibe el id de un mensaje
+    Primera ruta del enunciado. Recibe el id de un mensaje
     y retorna toda la informacion de este mensaje.
     """
     try:
-        database = db()
+        database = DB()
         id = int(id)
         ret = database.buscar_mensaje_id(id)
         status = 200
@@ -43,7 +45,7 @@ def artista_id(id):
     mensajes enviados por el usuario
     """
     try:
-        database = db()
+        database = DB()
         ret = database.buscar_artista_id(int(id))
         status = 200
 
@@ -67,7 +69,7 @@ def artistas_id():
     id_1 = request.args.get("id1")
     id_2 = request.args.get("id2")
     try:
-        database = db()
+        database = DB()
         ret = database.mensajes_compartidos(int(id_1), int(id_2))
         status = 200
 
@@ -95,7 +97,7 @@ def mensajes_filtrados():
     try:
         # Se recibe lo que se envía al POST y se fuerza a ser JSON
         form = json.loads(request.get_json(force=True))
-        database = db()
+        database = DB()
 
         print('[DEBUG] Form recibido', form)
 
