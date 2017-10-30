@@ -32,7 +32,7 @@ class Database:
         datos.
         """
         try:
-            resultado = self.db.messages.find({"id": id})
+            resultado = self.db.messages.find({"_id": id})
             resultado = json.loads(json_util.dumps(resultado))
             respuesta = {'entities': resultado}
 
@@ -51,7 +51,7 @@ class Database:
         try:
             mensajes = self.db.messages.find({'sender': id})
             mensajes = json.loads(json_util.dumps(mensajes))
-            informacion_usuario = self.db.users.find({'id': id})
+            informacion_usuario = self.db.users.find({'_id': id})
             informacion_usuario = json.loads(
                 json_util.dumps(informacion_usuario))
             # Respuesta que se entregará
