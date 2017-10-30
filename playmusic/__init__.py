@@ -1,9 +1,8 @@
-from flask import Flask
-from flask import Response, send_from_directory, render_template, request
+from flask import Flask, Response
 from flask_pymongo import PyMongo
 import json
 # Importar modulo de la base de datos
-from playmusic.db import Database as db
+
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -11,7 +10,9 @@ app.config.from_object('config')
 
 @app.errorhandler(404)
 def not_found(error):
-    return render_template('404.html'), 40
+    respuesta = Response(json.dumps(
+        {"error": 404, "description": "route not found"}), status=status, mimetype='application/json')
+    return respuesta
 
 # EMILIO: Esto no entendí para que sirve, mejor quizás no complicarse
 # con tanto y hacer una api sencilla no más
