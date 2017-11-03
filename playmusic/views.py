@@ -25,13 +25,11 @@ def mensajes_id():
     database = DB()
     id = int(id)
     ret = database.buscar_mensaje_id(id)
-    if len(ret["entities"]) == 0:
-        return
-    else:
-        status = 200
-        respuesta = Response(json.dumps(ret), status=status,
-                             mimetype='application/json')
-        return respuesta
+    
+    status = 200
+    respuesta = Response(json.dumps(ret), status=status,
+                         mimetype='application/json') 
+    return respuesta
 
 
 @app.route('/artista/<id>')
