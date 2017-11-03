@@ -14,6 +14,13 @@ def not_found(error):
         {"error": 404, "description": "route not found"}), status=404, mimetype='application/json')
     return respuesta
 
+
+@app.after_request
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    return response
+
 # EMILIO: Esto no entendí para que sirve, mejor quizás no complicarse
 # con tanto y hacer una api sencilla no más
 
