@@ -79,10 +79,9 @@ def artistas_id():
         return respuesta
 
 
-@app.route('/mensajesportexto', methods=['POST'])
+@app.route('/mensajes', methods=['POST'])
 def mensajes_filtrados():
     """
-    EDT: Cambié la ruta, para que no hubiera conflicto!
     Cuarta ruta con tres opciones, solamente acepta POST. Recibe un
     json con la opcion y los datos a filtrar.
 
