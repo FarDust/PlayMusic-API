@@ -22,8 +22,8 @@ def after_request(response):
     header['Access-Control-Allow-Headers'] = "Origin, X-Requested-With, Content-Type, Accept"
     return response
 
-# EMILIO: Esto no entendí para que sirve, mejor quizás no complicarse
-# con tanto y hacer una api sencilla no más
+# EMILIO: Esto no entendi para que sirve, mejor quizas no complicarse
+# con tanto y hacer una api sencilla no mas
 
 
 # GABRIEL: La idea de esto es para que aprendan a hacer una aplicacion modular

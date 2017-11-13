@@ -69,7 +69,7 @@ def artistas_id():
         status = 200
 
     except Exception as e:
-        print('[ERROR] Ocurrió un error en mensajes de artistas', e)
+        print('[ERROR] Ocurrio un error en mensajes de artistas', e)
         status = 500
         ret = {'error': 'Ocurrio un error.'}
 
