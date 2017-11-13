@@ -91,8 +91,9 @@ def mensajes_filtrados():
     """
     try:
         # Se recibe lo que se envía al POST y se fuerza a ser JSON
-        form = json.loads(request.get_json(force=True))
+        form = request.get_json()
         database = DB()
+
 
         print('[DEBUG] Form recibido', form)
 
