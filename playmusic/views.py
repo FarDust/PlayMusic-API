@@ -85,12 +85,12 @@ def mensajes_filtrados():
     Cuarta ruta con tres opciones, solamente acepta POST. Recibe un
     json con la opcion y los datos a filtrar.
 
-    Para esta ruta se asume que la base de datos está indexada, si no lo está
-    hay que ejecutar: desde mongodb
+    Para esta ruta se asume que la base de datos esta indexada, si no lo esta
+    hay que ejecutar desde mongodb
     db.mensajes.createIndex( { message: 'text' } )
     """
     try:
-        # Se recibe lo que se envía al POST y se fuerza a ser JSON
+        # Se recibe lo que se envia al POST y se fuerza a ser JSON
         form = request.get_json()
         database = DB()
 
@@ -106,7 +106,7 @@ def mensajes_filtrados():
     except Exception as e:
         print('[ERROR] Ocurrió un error al buscar mensajes filtrados', e)
         status = 500
-        ret = {'error': 'Ocurrió un error.'}
+        ret = {'error': 'Ocurrio un error.'}
 
     finally:
         respuesta = Response(json.dumps(ret), status=status,
