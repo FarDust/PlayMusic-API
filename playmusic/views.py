@@ -87,7 +87,7 @@ def mensajes_filtrados():
 
     Para esta ruta se asume que la base de datos esta indexada, si no lo esta
     hay que ejecutar desde mongodb
-    db.mensajes.createIndex( { message: 'text' } )
+    db.messages.createIndex( { message: 'text' } )
     """
     try:
         # Se recibe lo que se envia al POST y se fuerza a ser JSON
