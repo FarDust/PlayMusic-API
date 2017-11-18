@@ -72,12 +72,12 @@ class Database:
         esos ids y retorna una lista con ellos
         """
         try:
-            mensajes = self.db.messages.find({'$or': [
-                {"sender": id_1},
-                {"receptant": id_1},
-                {"sender": id_2},
-                {"receptant": id_2}
-            ]})
+            mensajes = self.db.messages.find({'$or': [ 
+                '$and': [ 
+                    {"sender": id_1}, {"receptant": id_2} ], 
+                '$and': [ 
+                    {"sender": id_2}, {"receptant": id_1} ] 
+                ]})
             mensajes = json.loads(json_util.dumps(mensajes))
             respuesta = {'mensajes': mensajes}
 
